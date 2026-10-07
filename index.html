@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SAXBYS Marquees — luxury sailcloth marquees and stretch tents for weddings, celebrations and corporate events. Bespoke styling, flawless delivery.">
+<title>SAXBYS Marquees — Bringing Dreams to Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     SAXBYS MARQUEES — Theme tokens
+     ============================================================ */
+  :root {
+    --bg: #F8F5F0;
+    --bg-alt: #FFFFFF;
+    --ink: #1B2A41;
+    --ink-soft: #55617A;
+    --gold: #C9A227;
+    --gold-deep: #A8851A;
+    --line: rgba(27, 42, 65, 0.12);
+    --line-strong: rgba(27, 42, 65, 0.24);
+    --shadow-sm: 0 2px 10px rgba(27, 42, 65, 0.06);
+    --shadow-md: 0 14px 40px rgba(27, 42, 65, 0.10);
+    --shadow-lg: 0 30px 70px rgba(27, 42, 65, 0.16);
+    --radius: 4px;
+    --radius-lg: 8px;
+    --wrap: 1200px;
+    --nav-h: 78px;
+    --display: "Playfair Display", Georgia, "Times New Roman", serif;
+    --body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+
+  body {
+    font-family: var(--body);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  ::selection { background: var(--gold); color: #fff; }
+
+  /* ---------- Typography ---------- */
+  h1, h2, h3, h4 { font-family: var(--display); font-weight: 500; line-height: 1.15; letter-spacing: 0.01em; }
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--gold-deep);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 34px; height: 1px;
+    background: var(--gold);
+    display: inline-block;
+  }
+  .eyebrow.center::after {
+    content: "";
+    width: 34px; height: 1px;
+    background: var(--gold);
+    display: inline-block;
+  }
+  .lede { font-size: 1.125rem; color: var(--ink-soft); font-weight: 300; }
+
+  /* ---------- Layout ---------- */
+  .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 28px; }
+  section { padding: 110px 0; }
+  .section-head { max-width: 660px; margin-bottom: 60px; }
+  .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .section-head h2 { font-size: clamp(2rem, 4vw, 3.1rem); margin: 22px 0 18px; }
+  .rule { height: 1px; background: var(--line); border: 0; }
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ============================================================
+     NAV
+     ============================================================ */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: var(--nav-h);
+    display: flex; align-items: center;
+    background: rgba(248, 245, 240, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.4s var(--ease), background 0.4s var(--ease), height 0.4s var(--ease);
+  }
+  .nav.scrolled {
+    height: 66px;
+    background: rgba(248, 245, 240, 0.96);
+    border-bottom-color: var(--line);
+  }
+  .nav-inner {
+    width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 28px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .brand { display: flex; flex-direction: column; line-height: 1; }
+  .brand b { font-family: var(--display); font-size: 1.45rem; font-weight: 600; letter-spacing: 0.14em; }
+  .brand span { font-size: 0.58rem; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold-deep); margin-top: 5px; font-weight: 600; }
+
+  .nav-links { display: flex; align-items: center; gap: 34px; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 500; color: var(--ink); position: relative; padding: 6px 0;
+  }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0;
+    background: var(--gold); transition: width 0.35s var(--ease);
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    font-family: var(--body); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 600; padding: 14px 26px; border-radius: var(--radius);
+    transition: all 0.35s var(--ease); white-space: nowrap;
+  }
+  .btn-gold { background: var(--gold); color: #fff; box-shadow: var(--shadow-sm); }
+  .btn-gold:hover { background: var(--gold-deep); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .btn-ink { background: var(--ink); color: var(--bg); }
+  .btn-ink:hover { background: #0f1a2b; transform: translateY(-2px); }
+  .btn-ghost { border: 1px solid var(--line-strong); color: var(--ink); background: transparent; }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold-deep); }
+  .btn-lg { padding: 18px 36px; font-size: 0.84rem; }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; padding: 10px; width: 44px; height: 44px;
+    align-items: center; justify-content: center;
+  }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); transition: all 0.3s var(--ease); }
+  .nav.open .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav.open .hamburger span:nth-child(2) { opacity: 0; }
+  .nav.open .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    position: relative; min-height: 100vh; display: flex; align-items: center;
+    padding-top: var(--nav-h); overflow: hidden; color: #fff;
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.05); }
+  .hero-bg::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(15,26,43,0.55) 0%, rgba(15,26,43,0.35) 40%, rgba(15,26,43,0.78) 100%);
+  }
+  .hero-inner { position: relative; z-index: 1; width: 100%; }
+  .hero .eyebrow { color: #E8D48A; }
+  .hero .eyebrow::before { background: #E8D48A; }
+  .hero h1 {
+    font-size: clamp(2.7rem, 7vw, 5.6rem); line-height: 1.02; margin: 26px 0 24px;
+    font-weight: 500; max-width: 15ch; color: #fff;
+  }
+  .hero h1 em { font-style: italic; color: #E8D48A; }
+  .hero p { font-size: clamp(1.02rem, 1.6vw, 1.22rem); max-width: 54ch; color: rgba(255,255,255,0.86); font-weight: 300; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 40px; }
+  .hero-actions .btn-ghost { border-color: rgba(255,255,255,0.4); color: #fff; }
+  .hero-actions .btn-ghost:hover { border-color: #E8D48A; color: #E8D48A; }
+  .hero-stats {
+    display: flex; flex-wrap: wrap; gap: 50px; margin-top: 64px;
+    padding-top: 34px; border-top: 1px solid rgba(255,255,255,0.22);
+  }
+  .hero-stats div b { font-family: var(--display); font-size: 2rem; display: block; color: #E8D48A; }
+  .hero-stats div span { font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+
+  /* ============================================================
+     ABOUT
+     ============================================================ */
+  .about-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 80px; align-items: center; }
+  .about-copy p + p { margin-top: 20px; }
+  .about-copy .lede { margin-top: 22px; }
+  .about-media { position: relative; }
+  .about-media img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); aspect-ratio: 4/5; object-fit: cover; }
+  .about-media .badge {
+    position: absolute; bottom: -34px; left: -34px; background: var(--ink); color: var(--bg);
+    padding: 26px 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); max-width: 240px;
+  }
+  .about-media .badge b { font-family: var(--display); font-size: 2.4rem; color: var(--gold); display: block; line-height: 1; }
+  .about-media .badge span { font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(248,245,240,0.8); }
+  .about-points { list-style: none; margin-top: 32px; display: grid; gap: 14px; }
+  .about-points li { display: flex; gap: 14px; align-items: flex-start; }
+  .about-points svg { flex: none; margin-top: 4px; }
+  .about-points b { font-weight: 600; }
+
+  /* ============================================================
+     MARQUEE CARDS
+     ============================================================ */
+  .marquee-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px; }
+  .m-card {
+    background: var(--bg-alt); border: 1px solid var(--line); border-radius: var(--radius-lg);
+    overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-sm);
+    transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+  }
+  .m-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+  .m-card-media { position: relative; overflow: hidden; aspect-ratio: 16/10; }
+  .m-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+  .m-card:hover .m-card-media img { transform: scale(1.06); }
+  .m-tag {
+    position: absolute; top: 18px; left: 18px; background: rgba(248,245,240,0.94);
+    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+    padding: 8px 14px; border-radius: 100px; color: var(--ink);
+  }
+  .m-card-body { padding: 34px 34px 38px; display: flex; flex-direction: column; flex: 1; }
+  .m-card-body h3 { font-size: 1.7rem; margin-bottom: 14px; }
+  .m-card-body > p { color: var(--ink-soft); font-weight: 300; }
+  .m-specs { list-style: none; margin: 24px 0; display: grid; gap: 10px; }
+  .m-specs li { display: flex; justify-content: space-between; gap: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--line); font-size: 0.9rem; }
+  .m-specs li span:first-child { color: var(--ink-soft); }
+  .m-specs li span:last-child { font-weight: 600; text-align: right; }
+  .m-card .btn { margin-top: auto; align-self: flex-start; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 22px; }
+  .pill {
+    font-size: 0.72rem; letter-spacing: 0.06em; padding: 6px 13px; border-radius: 100px;
+    background: rgba(201,162,39,0.10); color: var(--gold-deep); font-weight: 600;
+  }
+
+  /* ============================================================
+     EXTRAS
+     ============================================================ */
+  #extras { background: var(--ink); color: var(--bg); }
+  #extras .eyebrow { color: var(--gold); }
+  #extras .eyebrow::before { background: var(--gold); }
+  #extras .section-head h2 { color: #fff; }
+  #extras .section-head p { color: rgba(248,245,240,0.7); }
+  .extras-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .x-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(248,245,240,0.13);
+    border-radius: var(--radius-lg); padding: 34px 32px; transition: all 0.45s var(--ease);
+  }
+  .x-card:hover { background: rgba(201,162,39,0.09); border-color: rgba(201,162,39,0.45); transform: translateY(-5px); }
+  .x-icon {
+    width: 52px; height: 52px; border-radius: var(--radius); display: grid; place-items: center;
+    background: rgba(201,162,39,0.16); color: var(--gold); margin-bottom: 22px;
+  }
+  .x-card h3 { color: #fff; font-size: 1.32rem; margin-bottom: 12px; }
+  .x-card > p { color: rgba(248,245,240,0.68); font-size: 0.92rem; font-weight: 300; margin-bottom: 20px; }
+  .x-list { list-style: none; display: grid; gap: 9px; }
+  .x-list li { font-size: 0.86rem; color: rgba(248,245,240,0.82); display: flex; gap: 10px; align-items: baseline; }
+  .x-list li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex: none; transform: translateY(-2px); }
+  .x-list li b { color: #fff; font-weight: 500; }
+
+  /* ============================================================
+     GALLERY
+     ============================================================ */
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .g-item { position: relative; overflow: hidden; border-radius: var(--radius-lg); aspect-ratio: 4/3; background: #ddd; }
+  .g-item:nth-child(1) { grid-row: span 2; aspect-ratio: auto; }
+  .g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.3s var(--ease); }
+  .g-item:hover img { transform: scale(1.07); }
+  .g-cap {
+    position: absolute; inset: auto 0 0 0; padding: 44px 22px 20px; color: #fff;
+    background: linear-gradient(transparent, rgba(15,26,43,0.85));
+    transform: translateY(8px); opacity: 0; transition: all 0.5s var(--ease);
+  }
+  .g-item:hover .g-cap { transform: none; opacity: 1; }
+  .g-cap b { font-family: var(--display); font-size: 1.15rem; display: block; }
+  .g-cap span { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: #E8D48A; }
+
+  /* ============================================================
+     QUOTE BUILDER
+     ============================================================ */
+  #quote { background: var(--bg-alt); }
+  .qb-layout { display: grid; grid-template-columns: 1.6fr 0.9fr; gap: 44px; align-items: start; }
+  .qb-panel { border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--bg); }
+  .qb-block { padding: 34px 36px; }
+  .qb-block + .qb-block { border-top: 1px solid var(--line); }
+  .qb-label { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 600; color: var(--gold-deep); margin-bottom: 16px; display: block; }
+
+  .type-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .type-opt {
+    border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 18px 20px;
+    text-align: left; background: var(--bg-alt); transition: all 0.3s var(--ease);
+  }
+  .type-opt b { display: block; font-family: var(--display); font-size: 1.12rem; margin-bottom: 4px; }
+  .type-opt span { font-size: 0.8rem; color: var(--ink-soft); }
+  .type-opt.active { border-color: var(--gold); background: rgba(201,162,39,0.08); box-shadow: 0 0 0 1px var(--gold); }
+
+  .size-select { margin-top: 22px; }
+  select.qb-input, input.qb-input, textarea.qb-input {
+    width: 100%; font-family: var(--body); font-size: 0.95rem; color: var(--ink);
+    padding: 13px 15px; border: 1px solid var(--line-strong); border-radius: var(--radius);
+    background: var(--bg-alt); transition: border-color 0.3s var(--ease);
+  }
+  select.qb-input:focus, input.qb-input:focus, textarea.qb-input:focus { outline: none; border-color: var(--gold); }
+  .size-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; font-size: 0.85rem; color: var(--ink-soft); }
+  .size-meta b { color: var(--ink); font-size: 1rem; }
+  .slots-note { font-size: 0.82rem; color: var(--gold-deep); margin-top: 10px; font-weight: 500; }
+
+  .extras-picker { display: grid; gap: 10px; }
+  .pick-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+    padding: 15px 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-alt);
+    transition: border-color 0.3s var(--ease);
+  }
+  .pick-row:hover { border-color: var(--line-strong); }
+  .pick-row .pr-name { font-weight: 600; font-size: 0.95rem; }
+  .pick-row .pr-sub { font-size: 0.78rem; color: var(--ink-soft); }
+  .pick-row .pr-price { font-weight: 600; font-size: 0.86rem; color: var(--gold-deep); }
+
+  .stepper { display: flex; align-items: center; gap: 4px; border: 1px solid var(--line-strong); border-radius: 100px; padding: 3px; }
+  .stepper button {
+    width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+    font-size: 1rem; color: var(--ink); transition: background 0.25s var(--ease); line-height: 1;
+  }
+  .stepper button:hover { background: rgba(201,162,39,0.16); }
+  .stepper .qty { min-width: 26px; text-align: center; font-weight: 600; font-size: 0.9rem; }
+  .stepper .qty.zero { color: var(--ink-soft); font-weight: 400; }
+
+  .qb-summary { position: sticky; top: 96px; }
+  .quote-doc {
+    background: var(--ink); color: var(--bg); border-radius: var(--radius-lg);
+    padding: 36px 34px; box-shadow: var(--shadow-lg); overflow: hidden;
+  }
+  .quote-doc .q-head { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 20px; border-bottom: 1px solid rgba(248,245,240,0.18); }
+  .quote-doc .q-head b { font-family: var(--display); font-size: 1.2rem; letter-spacing: 0.12em; }
+  .quote-doc .q-head span { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+  .q-lines { list-style: none; margin: 22px 0; display: grid; gap: 12px; max-height: 320px; overflow-y: auto; padding-right: 4px; }
+  .q-lines::-webkit-scrollbar { width: 5px; }
+  .q-lines::-webkit-scrollbar-thumb { background: rgba(248,245,240,0.25); border-radius: 10px; }
+  .q-line { display: flex; justify-content: space-between; gap: 14px; font-size: 0.88rem; }
+  .q-line .ql-name { color: rgba(248,245,240,0.78); }
+  .q-line .ql-name em { font-style: normal; color: var(--gold); }
+  .q-line .ql-amt { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .q-empty { color: rgba(248,245,240,0.5); font-size: 0.9rem; padding: 14px 0; font-style: italic; }
+  .q-totals { border-top: 1px solid rgba(248,245,240,0.18); padding-top: 20px; display: grid; gap: 11px; }
+  .q-totals .row { display: flex; justify-content: space-between; font-size: 0.92rem; color: rgba(248,245,240,0.8); }
+  .q-totals .row.total { font-family: var(--display); font-size: 1.55rem; color: #fff; padding-top: 14px; border-top: 1px solid rgba(248,245,240,0.18); }
+  .q-totals .row.total .val { color: var(--gold); }
+  .q-actions { margin-top: 24px; display: grid; gap: 10px; }
+  .q-actions .btn { width: 100%; }
+  .q-actions .btn-gold:hover { transform: none; }
+  .btn-link { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(248,245,240,0.6); text-align: center; padding: 8px; transition: color 0.3s var(--ease); }
+  .btn-link:hover { color: var(--gold); }
+  .q-note { font-size: 0.74rem; color: rgba(248,245,240,0.45); text-align: center; margin-top: 6px; line-height: 1.6; }
+
+  .qb-flash { position: fixed; bottom: 26px; left: 50%; transform: translate(-50%, 80px); background: var(--ink); color: #fff; padding: 15px 26px; border-radius: 100px; box-shadow: var(--shadow-lg); font-size: 0.86rem; letter-spacing: 0.04em; z-index: 2000; opacity: 0; transition: all 0.5s var(--ease); border: 1px solid rgba(201,162,39,0.5); }
+  .qb-flash.show { transform: translate(-50%, 0); opacity: 1; }
+  .qb-flash b { color: var(--gold); }
+
+  /* ============================================================
+     CONTACT
+     ============================================================ */
+  .contact-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 60px; }
+  .contact-info h2 { font-size: clamp(1.9rem, 3.4vw, 2.7rem); margin: 22px 0 20px; }
+  .contact-info > p { color: var(--ink-soft); font-weight: 300; }
+  .contact-details { list-style: none; margin-top: 34px; display: grid; gap: 22px; }
+  .contact-details li { display: flex; gap: 16px; align-items: flex-start; }
+  .contact-details .ci-icon { width: 42px; height: 42px; border-radius: 50%; background: rgba(201,162,39,0.12); color: var(--gold-deep); display: grid; place-items: center; flex: none; }
+  .contact-details b { display: block; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 3px; }
+  .contact-details a, .contact-details span { font-size: 1rem; }
+  .contact-details a:hover { color: var(--gold-deep); }
+  .contact-form { background: var(--bg-alt); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-sm); }
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: var(--ink-soft); margin-bottom: 8px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .contact-form .btn { width: 100%; margin-top: 8px; }
+  .form-note { font-size: 0.78rem; color: var(--ink-soft); margin-top: 14px; text-align: center; }
+  .form-success { display: none; text-align: center; padding: 30px 10px; }
+  .form-success.show { display: block; }
+  .form-success svg { color: var(--gold); margin: 0 auto 18px; }
+  .form-success h3 { font-size: 1.5rem; margin-bottom: 10px; }
+  .form-success p { color: var(--ink-soft); }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer { background: var(--ink); color: var(--bg); padding: 70px 0 34px; }
+  .foot-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 50px; padding-bottom: 44px; border-bottom: 1px solid rgba(248,245,240,0.14); }
+  .foot-brand b { font-family: var(--display); font-size: 1.6rem; letter-spacing: 0.14em; display: block; }
+  .foot-brand span { font-size: 0.6rem; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold); }
+  .foot-brand p { color: rgba(248,245,240,0.6); font-size: 0.9rem; margin-top: 20px; max-width: 38ch; font-weight: 300; }
+  .foot-col h4 { font-size: 0.74rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; font-family: var(--body); font-weight: 600; }
+  .foot-col ul { list-style: none; display: grid; gap: 12px; }
+  .foot-col a { color: rgba(248,245,240,0.72); font-size: 0.92rem; transition: color 0.3s var(--ease); }
+  .foot-col a:hover { color: var(--gold); }
+  .foot-bottom { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding-top: 28px; font-size: 0.8rem; color: rgba(248,245,240,0.5); }
+  .foot-bottom .demo-tag { color: var(--gold); letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.68rem; }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1000px) {
+    .about-grid { grid-template-columns: 1fr; gap: 60px; }
+    .about-media .badge { left: 20px; bottom: -30px; }
+    .marquee-cards { grid-template-columns: 1fr; }
+    .extras-grid { grid-template-columns: repeat(2, 1fr); }
+    .qb-layout { grid-template-columns: 1fr; }
+    .qb-summary { position: static; }
+    .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+    .foot-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 720px) {
+    section { padding: 78px 0; }
+    .wrap { padding: 0 20px; }
+    .nav-inner { padding: 0 20px; }
+    .nav-links {
+      position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+      background: var(--bg); flex-direction: column; align-items: stretch; justify-content: flex-start;
+      gap: 0; padding: 20px 24px 40px;
+      transform: translateX(100%); transition: transform 0.45s var(--ease); overflow-y: auto;
+    }
+    .nav.open .nav-links { transform: none; }
+    .nav-links li { border-bottom: 1px solid var(--line); }
+    .nav-links a { display: block; padding: 20px 4px; font-size: 1rem; }
+    .nav-links .nav-cta-wrap { border-bottom: none; margin-top: 24px; }
+    .nav-links .nav-cta-wrap .btn { width: 100%; }
+    .hamburger { display: flex; }
+    .hero-stats { gap: 30px; }
+    .hero-stats div b { font-size: 1.6rem; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .g-item:nth-child(1) { grid-row: span 1; aspect-ratio: 4/3; }
+    .extras-grid { grid-template-columns: 1fr; }
+    .type-toggle { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr; }
+    .qb-block { padding: 26px 22px; }
+    .contact-form { padding: 28px 22px; }
+    .quote-doc { padding: 28px 24px; }
+    .foot-top { grid-template-columns: 1fr; gap: 36px; }
+  }
+  @media (max-width: 460px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .pick-row { grid-template-columns: 1fr; gap: 12px; }
+    .pick-row .pr-controls { display: flex; justify-content: flex-end; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand" aria-label="Saxbys Marquees home">
+      <b>SAXBYS</b>
+      <span>Marquees</span>
+    </a>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#marquees">Marquees</a></li>
+        <li><a href="#extras">Extras</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="nav-cta-wrap"><a href="#quote" class="btn btn-gold">Get a Quote</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img src="https://picsum.photos/seed/saxbys-hero/1920/1280" alt="Elegant sailcloth marquee at golden hour">
+  </div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Luxury Marquees &amp; Events</span>
+    <h1>Bringing <em>dreams</em> to life, under canvas.</h1>
+    <p>Bespoke sailcloth marquees and stretch tents, dressed with quiet luxury — designed entirely around your celebration, delivered flawlessly to any setting in the country.</p>
+    <div class="hero-actions">
+      <a href="#quote" class="btn btn-gold btn-lg">Build Your Quote</a>
+      <a href="#marquees" class="btn btn-ghost btn-lg">Explore Our Marquees</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>15+</b><span>Years Experience</span></div>
+      <div><b>190</b><span>Seated Guests</span></div>
+      <div><b>100%</b><span>Bespoke Design</span></div>
+      <div><b>UK</b><span>Nationwide Coverage</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ABOUT ============================ -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy reveal">
+      <span class="eyebrow">Our Story</span>
+      <div class="section-head" style="margin-bottom:0;">
+        <h2>Creativity at the heart of every celebration.</h2>
+      </div>
+      <p class="lede">Saxbys Marquees is a luxury marquee and events company built on one belief — that the setting should feel as extraordinary as the moment it holds.</p>
+      <p>For over fifteen years we've partnered with couples, families and brands to transform fields, gardens and estates into unforgettable spaces. As market-leading suppliers, we handle everything from the first sketch to the final fairy light, so you can be fully present on the day that matters.</p>
+      <p>Our approach is personal and unhurried. We listen, we advise, and we obsess over the details others overlook — because true luxury is felt in the seams, the sightlines and the softness of the light.</p>
+      <ul class="about-points">
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          <span><b>Market-leading suppliers</b> with an unrivalled network of craftspeople and stylists.</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          <span><b>Creativity at its core</b> — every marquee is styled individually, never off-the-shelf.</span>
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          <span><b>Years of industry experience</b> delivering weddings, festivals and corporate events.</span>
+        </li>
+      </ul>
+    </div>
+    <div class="about-media reveal">
+      <img src="https://picsum.photos/seed/saxbys-about/900/1125" alt="Interior of a luxuriously dressed marquee">
+      <div class="badge">
+        <b>15+</b>
+        <span>Years crafting unforgettable events</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MARQUEES ============================ -->
+<section id="marquees" style="background:var(--bg-alt);">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center">Our Collections</span>
+      <h2>Two marquees. Endless possibilities.</h2>
+      <p class="lede">Whether you dream of timeless sailcloth elegance or the organic, free-form beauty of a stretch tent, every structure is engineered to disappear into your surroundings — and take centre stage in your photographs.</p>
+    </div>
+    <div class="marquee-cards">
+      <article class="m-card reveal" id="card-sailcloth">
+        <div class="m-card-media">
+          <img src="https://picsum.photos/seed/saxbys-sailcloth/1200/750" alt="Sailcloth marquee with open sides">
+          <span class="m-tag">Most Requested</span>
+        </div>
+        <div class="m-card-body">
+          <h3>Sailcloth Marquee</h3>
+          <p>Traditional charm meets contemporary design. Tensioned sails and translucent walls create a light-filled space that feels both grand and intimate — the definitive choice for weddings and milestone celebrations.</p>
+          <div class="pill-row" style="margin-top:18px;">
+            <span class="pill">Fully sealable walls</span>
+            <span class="pill">Modular sections</span>
+            <span class="pill">Stylish &amp; durable</span>
+          </div>
+          <ul class="m-specs">
+            <li><span>Width</span><span>~14m</span></li>
+            <li><span>Structure</span><span>Modular — built to any length</span></li>
+            <li><span>Capacity</span><span>~190 seated @ 14 × 32m</span></li>
+            <li><span>Best for</span><span>Weddings, galas &amp; corporate</span></li>
+          </ul>
+          <button class="btn btn-ink" data-select-marquee="sailcloth">Add to Quote</button>
+        </div>
+      </article>
+
+      <article class="m-card reveal" id="card-stretch">
+        <div class="m-card-media">
+          <img src="https://picsum.photos/seed/saxbys-stretch/1200/750" alt="Stretch tent pitched over uneven terrain">
+          <span class="m-tag">Unbeatable Versatility</span>
+        </div>
+        <div class="m-card-body">
+          <h3>Stretch Tent</h3>
+          <p>Originally from Africa and prized for its fluid, sculptural form. The stretch tent adapts to the contours of your land — pitching beautifully where rigid pole marquees simply can't go.</p>
+          <div class="pill-row" style="margin-top:18px;">
+            <span class="pill">Varied terrain</span>
+            <span class="pill">Organic shape</span>
+            <span class="pill">4.5m – 15m spans</span>
+          </div>
+          <ul class="m-specs">
+            <li><span>Sizes</span><span>4.5 × 4.5m up to 15 × 15m</span></li>
+            <li><span>Ground</span><span>Slopes, terraces &amp; lawns</span></li>
+            <li><span>Style</span><span>Relaxed, contemporary, free-form</span></li>
+            <li><span>Best for</span><span>Parties, festivals &amp; outdoor dining</span></li>
+          </ul>
+          <button class="btn btn-ink" data-select-marquee="stretch">Add to Quote</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ EXTRAS ============================ -->
+<section id="extras">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center">The Finishing Touches</span>
+      <h2>Everything, down to the last detail.</h2>
+      <p class="lede">Furniture, lighting, flooring, bars and the little luxuries that turn a marquee into an atmosphere. Hire them individually, or let us style the whole affair.</p>
+    </div>
+    <div class="extras-grid">
+      <article class="x-card reveal">
+        <div class="x-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V9M20 20V9M4 9l8-5 8 5M4 9h16M7 20v-6M12 20v-6M17 20v-6"/></svg>
+        </div>
+        <h3>Tables &amp; Chairs</h3>
+        <p>Seating that balances comfort with quiet beauty.</p>
+        <ul class="x-list">
+          <li><span><b>Trestle tables</b> — classic farmhouse proportions</span></li>
+          <li><span><b>Oak cross-back chairs</b> — standard finish</span></li>
+          <li><span><b>Rustic cross-back chairs</b> — weathered oak</span></li>
+        </ul>
+      </article>
+
+      <article class="x-card reveal">
+        <div class="x-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18h6M10 22h4M12 2v1M12 15a4 4 0 004-4c0-3-4-6-4-6s-4 3-4 6a4 4 0 004 4z"/></svg>
+        </div>
+        <h3>Lighting</h3>
+        <p>Light is the difference between a tent and a dream.</p>
+        <ul class="x-list">
+          <li><span><b>Fairy light canopy</b> — interior</span></li>
+          <li><span><b>Flying festoons</b> — exterior</span></li>
+          <li><span><b>Walkway festoons</b> — arrival &amp; paths</span></li>
+          <li><span><b>Uplighters</b> — wash walls in warmth</span></li>
+        </ul>
+      </article>
+
+      <article class="x-card reveal">
+        <div class="x-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 3v18"/></svg>
+        </div>
+        <h3>Flooring</h3>
+        <p>A flawless foundation beneath every step.</p>
+        <ul class="x-list">
+          <li><span><b>Classic matting</b> — natural &amp; hard-wearing</span></li>
+          <li><span><b>Oak dancefloor</b> — 4.8 × 4.8m</span></li>
+          <li><span><b>Black &amp; white dancefloor</b> — 4.8 × 4.8m</span></li>
+        </ul>
+      </article>
+
+      <article class="x-card reveal">
+        <div class="x-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h14l-1 12H6L5 8zM8 8V6a4 4 0 018 0v2M8 12h8"/></svg>
+        </div>
+        <h3>Bars</h3>
+        <p>The social heart of the marquee.</p>
+        <ul class="x-list">
+          <li><span><b>Rustic round bar</b> — 3.6m diameter</span></li>
+          <li><span><b>Rectangular bar</b> — sleek &amp; linear</span></li>
+        </ul>
+      </article>
+
+      <article class="x-card reveal">
+        <div class="x-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg>
+        </div>
+        <h3>Accessories</h3>
+        <p>The flourishes guests remember.</p>
+        <ul class="x-list">
+          <li><span><b>Flower rings</b> &amp; overhead florals</span></li>
+          <li><span><b>Staging</b> for bands &amp; speeches</span></li>
+          <li><span><b>Blackout draping + roof</b></span></li>
+          <li><span><b>Reveal curtain</b> — dramatic entrances</span></li>
+          <li><span><b>Outdoor furniture</b>, fire pits &amp; oak barrels (1.2m)</span></li>
+        </ul>
+      </article>
+
+      <article class="x-card reveal">
+        <div class="x-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+        </div>
+        <h3>Facilities</h3>
+        <p>Comfort and power, handled discreetly.</p>
+        <ul class="x-list">
+          <li><span><b>Luxury loos</b> — trailer &amp; bespoke units</span></li>
+          <li><span><b>Generator</b> — silent, event-grade power</span></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ GALLERY ============================ -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center">Recent Celebrations</span>
+      <h2>A glimpse of what we create.</h2>
+      <p class="lede">From intimate garden weddings to full-scale festivals — a small selection of the settings we've brought to life.</p>
+    </div>
+    <div class="gallery-grid reveal">
+      <figure class="g-item">
+        <img src="https://picsum.photos/seed/saxbys-g1/900/1200" alt="Sailcloth wedding marquee at dusk">
+        <figcaption class="g-cap"><b>The Lakeside Vows</b><span>Wedding</span></figcaption>
+      </figure>
+      <figure class="g-item">
+        <img src="https://picsum.photos/seed/saxbys-g2/900/700" alt="Corporate awards dinner in a marquee">
+        <figcaption class="g-cap"><b>Annual Awards Gala</b><span>Corporate</span></figcaption>
+      </figure>
+      <figure class="g-item">
+        <img src="https://picsum.photos/seed/saxbys-g3/900/700" alt="Birthday celebration with festoon lighting">
+        <figcaption class="g-cap"><b>Golden Hour Soirée</b><span>Party</span></figcaption>
+      </figure>
+      <figure class="g-item">
+        <img src="https://picsum.photos/seed/saxbys-g4/900/700" alt="Festival stage under a stretch tent">
+        <figcaption class="g-cap"><b>Meadow Sessions</b><span>Festival</span></figcaption>
+      </figure>
+      <figure class="g-item">
+        <img src="https://picsum.photos/seed/saxbys-g5/900/700" alt="Long banquet table styled with florals">
+        <figcaption class="g-cap"><b>The Long Table</b><span>Wedding</span></figcaption>
+      </figure>
+      <figure class="g-item">
+        <img src="https://picsum.photos/seed/saxbys-g6/900/700" alt="Outdoor bar and fire pit at night">
+        <figcaption class="g-cap"><b>Fireside &amp; Feasts</b><span>Party</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ QUOTE BUILDER ============================ -->
+<section id="quote">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center">Your Quote</span>
+      <h2>Build a quote in moments.</h2>
+      <p class="lede">Choose your marquee, add the finishing touches, and watch your estimate take shape — including VAT. Send it straight to our team when you're ready.</p>
+    </div>
+
+    <div class="qb-layout">
+      <!-- ---------- BUILDER PANEL ---------- -->
+      <div class="qb-panel reveal">
+        <div class="qb-block">
+          <span class="qb-label">Step 1 — Choose your marquee</span>
+          <div class="type-toggle" id="typeToggle">
+            <button class="type-opt active" data-type="sailcloth">
+              <b>Sailcloth Marquee</b>
+              <span>Timeless, elegant, fully sealable</span>
+            </button>
+            <button class="type-opt" data-type="stretch">
+              <b>Stretch Tent</b>
+              <span>Free-form, terrain-friendly</span>
+            </button>
+          </div>
+          <div class="size-select">
+            <label class="qb-label" for="sizeSelect" style="margin-top:22px;">Size</label>
+            <select class="qb-input" id="sizeSelect" aria-label="Select marquee size"></select>
+            <div class="size-meta">
+              <span class="slots-note" id="slotsNote"></span>
+              <span>From <b id="sizePrice">£0</b></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="qb-block">
+          <span class="qb-label">Step 2 — Add extras</span>
+          <div class="extras-picker" id="extrasPicker"></div>
+        </div>
+      </div>
+
+      <!-- ---------- SUMMARY ---------- -->
+      <aside class="qb-summary reveal">
+        <div class="quote-doc">
+          <div class="q-head">
+            <b>QUOTE</b>
+            <span>Estimate Only</span>
+          </div>
+          <ul class="q-lines" id="quoteLines"></ul>
+          <div class="q-totals">
+            <div class="row"><span>Sub-total</span><span class="val" id="sumSubtotal">£0.00</span></div>
+            <div class="row"><span>VAT @ 20%</span><span class="val" id="sumVat">£0.00</span></div>
+            <div class="row total"><span>Total inc. VAT</span><span class="val" id="sumTotal">£0.00</span></div>
+          </div>
+          <div class="q-actions">
+            <a href="#" class="btn btn-gold" id="emailQuote">Email Me This Quote</a>
+            <button class="btn-link" id="clearQuote">Clear quote</button>
+          </div>
+          <p class="q-note">Indicative pricing for demonstration. Your tailored proposal may vary with site, season and specification.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info reveal">
+      <span class="eyebrow">Get in Touch</span>
+      <h2>Let's plan something beautiful.</h2>
+      <p>Tell us a little about your event and we'll be in touch within one working day with ideas, availability and a tailored quote.</p>
+      <ul class="contact-details">
+        <li>
+          <span class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012 4.2 2 2 0 014 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.6a2 2 0 01-.5 2.1L8 9.6a16 16 0 006 6l1.2-1.1a2 2 0 012.1-.5c.8.3 1.7.5 2.6.6a2 2 0 011.7 2z"/></svg></span>
+          <div><b>Call Us</b><a href="tel:+441234567890">01234 567 890</a></div>
+        </li>
+        <li>
+          <span class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></span>
+          <div><b>Email</b><a href="mailto:hello@saxbysmarquees.co.uk">hello@saxbysmarquees.co.uk</a></div>
+        </li>
+        <li>
+          <span class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><b>Find Us</b><span>The Old Barn, Meadow Lane, Gloucestershire, GL1 2AB</span></div>
+        </li>
+        <li>
+          <span class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div><b>Office Hours</b><span>Mon – Sat, 9am – 6pm</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="contact-form reveal">
+      <form id="contactForm" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="cName">Full Name</label>
+            <input class="qb-input" type="text" id="cName" name="name" placeholder="Your name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="cEmail">Email Address</label>
+            <input class="qb-input" type="email" id="cEmail" name="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="cDate">Event Date</label>
+            <input class="qb-input" type="date" id="cDate" name="date">
+          </div>
+          <div class="field">
+            <label for="cGuests">Guests</label>
+            <input class="qb-input" type="number" id="cGuests" name="guests" min="1" placeholder="e.g. 120">
+          </div>
+        </div>
+        <div class="field">
+          <label for="cMessage">Your Message</label>
+          <textarea class="qb-input" id="cMessage" name="message" rows="5" placeholder="Tell us about your vision, location and anything that matters to you..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-ink btn-lg">Send Enquiry</button>
+        <p class="form-note">This demo form doesn't send data — nothing leaves your browser.</p>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+        <h3>Thank you.</h3>
+        <p>Your enquiry is on its way. In a live site, this would land straight in the Saxbys inbox within seconds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <b>SAXBYS</b>
+        <span>Marquees</span>
+        <p>Bringing dreams to life under canvas — luxury sailcloth marquees and stretch tents, styled and delivered across the UK.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#marquees">Marquees</a></li>
+          <li><a href="#extras">Extras</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Plan Your Event</h4>
+        <ul>
+          <li><a href="#quote">Build a Quote</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="tel:+441234567890">01234 567 890</a></li>
+          <li><a href="mailto:hello@saxbysmarquees.co.uk">hello@saxbysmarquees.co.uk</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="year"></span> Saxbys Marquees. All rights reserved.</span>
+      <span class="demo-tag">Demonstration Site — Built to Showcase</span>
+    </div>
+  </div>
+</footer>
+
+<div class="qb-flash" id="flash" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================
+     DATA
+     ============================================================ */
+  var MARQUEES = {
+    sailcloth: {
+      label: "Sailcloth Marquee",
+      sizes: [
+        { id: "sc-14-18", label: "14 × 18m", price: 2400, seated: 90 },
+        { id: "sc-14-24", label: "14 × 24m", price: 3100, seated: 130 },
+        { id: "sc-14-32", label: "14 × 32m", price: 3900, seated: 190 },
+        { id: "sc-14-40", label: "14 × 40m", price: 4700, seated: 240 }
+      ]
+    },
+    stretch: {
+      label: "Stretch Tent",
+      sizes: [
+        { id: "st-4",  label: "4.5 × 4.5m", price: 650,  seated: 20 },
+        { id: "st-6",  label: "6 × 6m",     price: 950,  seated: 40 },
+        { id: "st-8",  label: "8 × 8m",     price: 1450, seated: 70 },
+        { id: "st-10", label: "10 × 10m",   price: 1950, seated: 110 },
+        { id: "st-12", label: "12 × 12m",   price: 2600, seated: 160 },
+        { id: "st-15", label: "15 × 15m",   price: 3400, seated: 250 }
+      ]
+    }
+  };
+
+  var EXTRAS = [
+    { id: "trestle",   cat: "Tables & Chairs", name: "Trestle Table",            unit: "per table",     price: 12 },
+    { id: "chair-std", cat: "Tables & Chairs", name: "Oak Cross-back Chair",      unit: "per chair",     price: 4.5 },
+    { id: "chair-rus", cat: "Tables & Chairs", name: "Rustic Cross-back Chair",   unit: "per chair",     price: 5.5 },
+    { id: "canopy",    cat: "Lighting",        name: "Fairy Light Canopy (interior)", unit: "per install", price: 450 },
+    { id: "flying",    cat: "Lighting",        name: "Flying Festoons (exterior)", unit: "per install",  price: 380 },
+    { id: "walkway",   cat: "Lighting",        name: "Walkway Festoons",          unit: "per install",   price: 220 },
+    { id: "uplight",   cat: "Lighting",        name: "Uplighter",                 unit: "per light",     price: 18 },
+    { id: "matting",   cat: "Flooring",        name: "Classic Matting",           unit: "per marquee",   price: 180 },
+    { id: "dance-oak", cat: "Flooring",        name: "Oak Dancefloor (4.8 × 4.8m)", unit: "per floor",   price: 520 },
+    { id: "dance-bw",  cat: "Flooring",        name: "Black & White Dancefloor (4.8 × 4.8m)", unit: "per floor", price: 560 },
+    { id: "bar-round", cat: "Bars",            name: "Rustic Round Bar (3.6m)",   unit: "per bar",       price: 480 },
+    { id: "bar-rect",  cat: "Bars",            name: "Rectangular Bar",           unit: "per bar",       price: 390 },
+    { id: "flower",    cat: "Accessories",     name: "Flower Ring",               unit: "per ring",      price: 95 },
+    { id: "staging",   cat: "Accessories",     name: "Staging",                   unit: "per stage",     price: 240 },
+    { id: "blackout",  cat: "Accessories",     name: "Blackout Draping + Roof",   unit: "per marquee",   price: 420 },
+    { id: "curtain",   cat: "Accessories",     name: "Reveal Curtain",            unit: "per curtain",   price: 260 },
+    { id: "oak-barrel",cat: "Accessories",     name: "Oak Barrel (1.2m)",         unit: "per barrel",    price: 45 },
+    { id: "outdoor-furn", cat: "Accessories",  name: "Outdoor Furniture",         unit: "per piece",     price: 12 },
+    { id: "firepit",   cat: "Accessories",     name: "Fire Pit",                  unit: "per pit",       price: 85 },
+    { id: "luxloo",    cat: "Facilities",      name: "Luxury Loo",                unit: "per unit",      price: 320 },
+    { id: "generator", cat: "Facilities",      name: "Generator",                 unit: "per unit",      price: 280 }
+  ];
+
+  var VAT_RATE = 0.20;
+  var STORE_KEY = "saxbys-quote-v1";
+
+  /* ============================================================
+     STATE
+     ============================================================ */
+  var state = { type: "sailcloth", sizeId: null, extras: {} };
+
+  function defaultSize(type) {
+    var sizes = MARQUEES[type].sizes;
+    return sizes[Math.floor(sizes.length / 2)].id;
+  }
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if (raw) {
+        var saved = JSON.parse(raw);
+        if (saved && (saved.type === "sailcloth" || saved.type === "stretch")) {
+          state.type = saved.type;
+        }
+        if (saved && typeof saved.sizeId === "string" && findSize(saved.sizeId)) {
+          state.sizeId = saved.sizeId;
+        }
+        if (saved && saved.extras && typeof saved.extras === "object") {
+          Object.keys(saved.extras).forEach(function (k) {
+            var q = parseInt(saved.extras[k], 10);
+            if (findExtra(k) && q > 0) state.extras[k] = q;
+          });
+        }
+      }
+    } catch (e) { /* ignore corrupt storage */ }
+    if (!state.sizeId) state.sizeId = defaultSize(state.type);
+  }
+
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) { /* storage unavailable */ }
+  }
+
+  function findSize(id) {
+    for (var t in MARQUEES) {
+      var s = MARQUEES[t].sizes.filter(function (x) { return x.id === id; });
+      if (s.length) return s[0];
+    }
+    return null;
+  }
+  function findExtra(id) {
+    var m = EXTRAS.filter(function (x) { return x.id === id; });
+    return m.length ? m[0] : null;
+  }
+
+  /* ============================================================
+     MONEY
+     ============================================================ */
+  function money(n) {
+    return "£" + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  function calcTotals() {
+    var subtotal = 0;
+    var size = findSize(state.sizeId);
+    if (size) subtotal += size.price;
+    Object.keys(state.extras).forEach(function (id) {
+      var ex = findExtra(id);
+      if (ex) subtotal += ex.price * state.extras[id];
+    });
+    var vat = subtotal * VAT_RATE;
+    return { subtotal: subtotal, vat: vat, total: subtotal + vat };
+  }
+
+  /* ============================================================
+     MAILTO BUILDER
+     ============================================================ */
+  function buildMailto() {
+    var t = calcTotals();
+    var size = findSize(state.sizeId);
+    var body = [];
+    body.push("SAXBYS MARQUEES — QUOTE REQUEST");
+    body.push("====================================");
+    body.push("");
+    body.push("Marquee: " + MARQUEES[state.type].label);
+    if (size) body.push("Size: " + size.label + " (seats approx. " + size.seated + ")");
+    body.push("");
+    body.push("EXTRAS");
+    body.push("------------------------------------");
+    var any = false;
+    EXTRAS.forEach(function (ex) {
+      var q = state.extras[ex.id];
+      if (q > 0) {
+        any = true;
+        body.push(q + " × " + ex.name + "  —  " + money(ex.price * q));
+      }
+    });
+    if (!any) body.push("(no extras selected)");
+    body.push("");
+    body.push("------------------------------------");
+    body.push("Sub-total:        " + money(t.subtotal));
+    body.push("VAT @ 20%:        " + money(t.vat));
+    body.push("TOTAL inc. VAT:   " + money(t.total));
+    body.push("");
+    body.push("------------------------------------");
+    body.push("");
+    body.push("Name:");
+    body.push("Event date:");
+    body.push("Guest count:");
+    body.push("Location:");
+    body.push("");
+    body.push("Please confirm availability and a tailored proposal.");
+    body.push("");
+    body.push("(Quote built at saxbysmarquees.co.uk)");
+
+    var subject = "Quote Request — " + MARQUEES[state.type].label + (size ? " (" + size.label + ")" : "");
+    return "mailto:hello@saxbysmarquees.co.uk?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body.join("\n"));
+  }
+
+  /* ============================================================
+     RENDER — EXTRAS PICKER
+     ============================================================ */
+  var pickerEl = document.getElementById("extrasPicker");
+
+  function buildPicker() {
+    var cats = [];
+    EXTRAS.forEach(function (ex) {
+      if (cats.indexOf(ex.cat) === -1) cats.push(ex.cat);
+    });
+    pickerEl.innerHTML = cats.map(function (cat) {
+      var rows = EXTRAS.filter(function (e) { return e.cat === cat; }).map(function (e) {
+        return '<div class="pick-row" data-extra="' + e.id + '">' +
+                 '<div>' +
+                   '<div class="pr-name">' + e.name + '</div>' +
+                   '<div class="pr-sub">' + money(e.price) + ' ' + e.unit + '</div>' +
+                 '</div>' +
+                 '<div class="pr-controls">' +
+                   '<div class="stepper">' +
+                     '<button type="button" data-dec="' + e.id + '" aria-label="Decrease ' + e.name + '">&minus;</button>' +
+                     '<span class="qty" id="qty-' + e.id + '">0</span>' +
+                     '<button type="button" data-inc="' + e.id + '" aria-label="Increase ' + e.name + '">+</button>' +
+                   '</div>' +
+                 '</div>' +
+               '</div>';
+      }).join("");
+      return '<div class="qb-label" style="margin:26px 0 12px;">' + cat + '</div>' + rows;
+    }).join("");
+  }
+
+  function syncPicker() {
+    EXTRAS.forEach(function (e) {
+      var qtyEl = document.getElementById("qty-" + e.id);
+      if (!qtyEl) return;
+      var q = state.extras[e.id] || 0;
+      qtyEl.textContent = q;
+      qtyEl.className = "qty" + (q === 0 ? " zero" : "");
+    });
+  }
+
+  /* ============================================================
+     RENDER — SIZE SELECT
+     ============================================================ */
+  var sizeSelect = document.getElementById("sizeSelect");
+  var sizePrice = document.getElementById("sizePrice");
+  var slotsNote = document.getElementById("slotsNote");
+
+  function renderSizes() {
+    var m = MARQUEES[state.type];
+    sizeSelect.innerHTML = m.sizes.map(function (s) {
+      return '<option value="' + s.id + '">' + s.label + ' — seats approx. ' + s.seated + '</option>';
+    }).join("");
+    sizeSelect.value = state.sizeId;
+  }
+
+  function syncSizeMeta() {
+    var s = findSize(state.sizeId);
+    if (!s) return;
+    sizePrice.textContent = money(s.price);
+    slotsNote.textContent = "Seats approximately " + s.seated + " guests";
+  }
+
+  function renderTypeToggle() {
+    var opts = document.querySelectorAll(".type-opt");
+    for (var i = 0; i < opts.length; i++) {
+      var active = opts[i].getAttribute("data-type") === state.type;
+      opts[i].classList.toggle("active", active);
+    }
+  }
+
+  /* ============================================================
+     RENDER — QUOTE SUMMARY
+     ============================================================ */
+  var linesEl = document.getElementById("quoteLines");
+  var elSubtotal = document.getElementById("sumSubtotal");
+  var elVat = document.getElementById("sumVat");
+  var elTotal = document.getElementById("sumTotal");
+
+  function renderSummary() {
+    var lines = [];
+    var size = findSize(state.sizeId);
+    if (size) {
+      lines.push({ name: MARQUEES[state.type].label, detail: size.label, amount: size.price });
+    }
+    EXTRAS.forEach(function (e) {
+      var q = state.extras[e.id];
+      if (q > 0) lines.push({ name: e.name, detail: "×" + q, amount: e.price * q });
+    });
+
+    if (!lines.length) {
+      linesEl.innerHTML = '<li class="q-empty">Your quote is empty — choose a marquee to begin.</li>';
+    } else {
+      linesEl.innerHTML = lines.map(function (l) {
+        return '<li class="q-line">' +
+                 '<span class="ql-name">' + l.name + ' <em>' + l.detail + '</em></span>' +
+                 '<span class="ql-amt">' + money(l.amount) + '</span>' +
+               '</li>';
+      }).join("");
+    }
+
+    var t = calcTotals();
+    elSubtotal.textContent = money(t.subtotal);
+    elVat.textContent = money(t.vat);
+    elTotal.textContent = money(t.total);
+    document.getElementById("emailQuote").setAttribute("href", buildMailto());
+  }
+
+  function renderAll() {
+    renderTypeToggle();
+    renderSizes();
+    syncSizeMeta();
+    syncPicker();
+    renderSummary();
+  }
+
+  /* ============================================================
+     EVENTS
+     ============================================================ */
+  document.getElementById("typeToggle").addEventListener("click", function (e) {
+    var btn = e.target.closest(".type-opt");
+    if (!btn) return;
+    var type = btn.getAttribute("data-type");
+    if (type === state.type) return;
+    state.type = type;
+    state.sizeId = defaultSize(type);
+    save();
+    renderAll();
+  });
+
+  sizeSelect.addEventListener("change", function () {
+    state.sizeId = sizeSelect.value;
+    save();
+    syncSizeMeta();
+    renderSummary();
+  });
+
+  pickerEl.addEventListener("click", function (e) {
+    var inc = e.target.closest("[data-inc]");
+    var dec = e.target.closest("[data-dec]");
+    if (inc) {
+      var id = inc.getAttribute("data-inc");
+      state.extras[id] = (state.extras[id] || 0) + 1;
+    } else if (dec) {
+      var id2 = dec.getAttribute("data-dec");
+      var cur = state.extras[id2] || 0;
+      if (cur <= 1) delete state.extras[id2];
+      else state.extras[id2] = cur - 1;
+    } else {
+      return;
+    }
+    save();
+    syncPicker();
+    renderSummary();
+  });
+
+  /* ---- Add-to-quote buttons on marquee cards ---- */
+  var marqueeBtns = document.querySelectorAll("[data-select-marquee]");
+  for (var b = 0; b < marqueeBtns.length; b++) {
+    marqueeBtns[b].addEventListener("click", function () {
+      var type = this.getAttribute("data-select-marquee");
+      state.type = type;
+      state.sizeId = defaultSize(type);
+      save();
+      renderAll();
+      flash("Added <b>" + MARQUEES[type].label + "</b> to your quote");
+      document.getElementById("quote").scrollIntoView({ behavior: "smooth" });
+    });
+  }
+
+  /* ---- Clear ---- */
+  document.getElementById("clearQuote").addEventListener("click", function () {
+    state.extras = {};
+    state.type = "sailcloth";
+    state.sizeId = defaultSize("sailcloth");
+    save();
+    renderAll();
+    flash("Quote cleared");
+  });
+
+  /* ---- Mailto ---- */
+  document.getElementById("emailQuote").addEventListener("click", function (e) {
+    e.preventDefault();
+    var href = buildMailto();
+    this.setAttribute("href", href);
+    window.location.href = href;
+    flash("Opening your email app…");
+  });
+
+  /* ============================================================
+     FLASH
+     ============================================================ */
+  var flashEl = document.getElementById("flash");
+  var flashTimer;
+  function flash(html) {
+    flashEl.innerHTML = html;
+    flashEl.classList.add("show");
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(function () { flashEl.classList.remove("show"); }, 2600);
+  }
+
+  /* ============================================================
+     NAV
+     ============================================================ */
+  var nav = document.getElementById("nav");
+  var hamburger = document.getElementById("hamburger");
+  var navLinks = document.getElementById("navLinks");
+
+  hamburger.addEventListener("click", function () {
+    var open = nav.classList.toggle("open");
+    hamburger.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  navLinks.addEventListener("click", function (e) {
+    if (e.target.tagName === "A") {
+      nav.classList.remove("open");
+      hamburger.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  window.addEventListener("scroll", function () {
+    nav.classList.toggle("scrolled", window.scrollY > 30);
+  }, { passive: true });
+
+  /* ============================================================
+     SCROLL REVEAL
+     ============================================================ */
+  var reveals = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    for (var r = 0; r < reveals.length; r++) io.observe(reveals[r]);
+  } else {
+    for (var r2 = 0; r2 < reveals.length; r2++) reveals[r2].classList.add("in");
+  }
+
+  /* ============================================================
+     CONTACT FORM
+     ============================================================ */
+  var form = document.getElementById("contactForm");
+  var success = document.getElementById("formSuccess");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = document.getElementById("cName");
+    var email = document.getElementById("cEmail");
+    if (!name.value.trim() || !email.value.trim() || email.value.indexOf("@") === -1) {
+      if (!name.value.trim()) name.style.borderColor = "#b23b3b";
+      if (!email.value.trim() || email.value.indexOf("@") === -1) email.style.borderColor = "#b23b3b";
+      flash("Please add your name and a valid email");
+      return;
+    }
+    form.style.display = "none";
+    success.classList.add("show");
+  });
+  ["cName", "cEmail"].forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener("input", function () { el.style.borderColor = ""; });
+  });
+
+  /* ============================================================
+     INIT
+     ============================================================ */
+  document.getElementById("year").textContent = new Date().getFullYear();
+  load();
+  buildPicker();
+  renderAll();
+})();
+</script>
+</body>
+</html>
