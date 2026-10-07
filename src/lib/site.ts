@@ -26,7 +26,7 @@ export const siteConfig: SiteConfig = {
   name: "Saxbys Marquees",
   shortName: "Saxbys",
   tagline: "Luxury marquees & event spaces",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.saxbysmarquees.co.uk",
+  url: process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.saxbysmarquees.co.uk",
   email: "",
   phone: "",
   nav: [
